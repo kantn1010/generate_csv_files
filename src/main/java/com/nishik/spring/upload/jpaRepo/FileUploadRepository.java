@@ -9,6 +9,8 @@ import com.nishik.spring.upload.entity.User;
 
 public interface FileUploadRepository extends JpaRepository<User, Long>{
 
-@Query("SELECT NEW USER(d.user_id,d.email_id,d.name) from USER d ORDER BY d.upload_date DESC")
-List<User> findAll();
+	
+	  @Query("SELECT USER(d.user_id,d.email_id,d.name) from USER d ORDER BY d.upload_date DESC"
+	  ) public List<User> findAll();
+	 
 }
