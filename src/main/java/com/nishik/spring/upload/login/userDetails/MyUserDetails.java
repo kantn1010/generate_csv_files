@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Set;
 
 import com.nishik.spring.upload.entity.UserLoginAccess;
-import com.nishik.spring.upload.entity.UserRoles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
  
 
+@SuppressWarnings("serial")
 public class MyUserDetails implements UserDetails{
 	
 	private UserLoginAccess user;
@@ -22,11 +22,12 @@ public class MyUserDetails implements UserDetails{
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<UserLoginAccess> roles = user.getRoles();
+        @SuppressWarnings("unchecked")
+		Set<UserLoginAccess> roles = (Set<UserLoginAccess>) user.getRoles();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
          
         for (UserLoginAccess role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRoles()));
+            authorities.add(new SimpleGrantedAuthority((String) role.getRoles()));
         }
          
         return authorities;

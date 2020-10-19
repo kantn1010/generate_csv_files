@@ -63,7 +63,7 @@ public class UserLoginAccess {
 		this.enabled = enabled;
 	}
 
-	public String getRoles() {
+	public Object getRoles() {
 		return toString();
 	}
 
